@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Stant Cineminha</string>
+    <string name="title_cartaz">Em Cartaz</string>
+    <string name="title_busca">Busca</string>
+    <string name="title_favoritos">Favoritos</string>
+    <string name="nome_do_filme">Nome do Filme</string>
+    <string name="genero_do_filme">Gênero do filme</string>
+    <string name="format_data">DD/MM/YYYY</string>
+    <string name="poster_do_filme">Poster do Filme</string>
+</resources>
