@@ -8,4 +8,9 @@
     <string name="title_cartaz">Em Cartaz</string>
     <string name="title_busca">buscar</string>
     <string name="title_favoritos">favoritos</string>
+    <string name="sem_conexao">Sem Conexão</string>
+    <string name="pref_file" translatable="false">prefFile</string>
+    <string name="overview">overview</string>
+    <string name="voltar">Voltar</string>
+    <string name="lang_origem">Lang. Origem</string>
 </resources>

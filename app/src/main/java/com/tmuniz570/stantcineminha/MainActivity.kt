@@ -1,6 +1,10 @@
 package com.tmuniz570.stantcineminha
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -31,5 +35,25 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        if (applicationContext != null){
+            if (!isInternetAvailable(applicationContext)){
+                Toast.makeText(applicationContext, "Sem Conexão", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun isInternetAvailable(context: Context): Boolean {
+        var result = false
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE)
+                as ConnectivityManager
+        connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)?.run {
+            result = when {
+                hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                else -> false
+            }
+        }
+        return result
     }
 }

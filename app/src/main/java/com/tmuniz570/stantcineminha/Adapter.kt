@@ -10,8 +10,12 @@ import com.bumptech.glide.Glide
 import com.tmuniz570.stantcineminha.model.Filmes
 
 class Adapter (
-    private var list : MutableList<Filmes.Results> = ArrayList(),
+    private var list : Filmes,
     private var clickListener: OnClickListener) : RecyclerView.Adapter<Adapter.HolderData>() {
+
+    companion object{
+        lateinit var selectFilme: Filmes.Results
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderData {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_rv, parent, false)
@@ -19,7 +23,7 @@ class Adapter (
     }
 
     override fun onBindViewHolder(holder: HolderData, position: Int) {
-        val dados = list[position]
+        val dados = list.results[position]
 
         holder.nome.text = dados.title
         holder.genero.text = dados.genre_ids.toString()
@@ -32,7 +36,7 @@ class Adapter (
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list.results.size
     }
 
     class HolderData(v: View) : RecyclerView.ViewHolder(v) {
@@ -41,22 +45,22 @@ class Adapter (
         var lancamento = v.findViewById<TextView>(R.id.tv_lancamento)
         var poster = v.findViewById<ImageView>(R.id.iv_poster)
 
-        fun initializeClick(item: MutableList<Filmes.Results>, action: OnClickListener) {
+        fun initializeClick(item: Filmes, action: OnClickListener) {
 
             itemView.setOnClickListener {
-                action.onItemClick(item[adapterPosition], adapterPosition)
+                selectFilme = item.results[adapterPosition]
+                action.onItemClick(item, adapterPosition)
             }
         }
     }
 
-    fun get(lista: MutableList<Filmes.Results>) {
-        list = lista
+    fun get(lista: Filmes) {
+        list.results = lista.results
         notifyDataSetChanged()
     }
 
     interface OnClickListener {
-        fun onItemClick(item: Filmes.Results, position: Int) {
-
+        fun onItemClick(item: Filmes, position: Int) {
         }
     }
 }

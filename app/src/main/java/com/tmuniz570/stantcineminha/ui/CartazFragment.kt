@@ -1,6 +1,7 @@
 package com.tmuniz570.stantcineminha.ui
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Bundle
@@ -8,10 +9,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tmuniz570.stantcineminha.Adapter
+import com.tmuniz570.stantcineminha.DetalheActivity
 import com.tmuniz570.stantcineminha.databinding.FragmentCartazBinding
 import com.tmuniz570.stantcineminha.model.Filmes
 import com.tmuniz570.stantcineminha.model.RetrofitInitializer
@@ -21,7 +22,7 @@ import retrofit2.Response
 
 class CartazFragment : Fragment(), Adapter.OnClickListener {
 
-    private var lista : MutableList<Filmes.Results> = ArrayList()
+    private lateinit var lista : Filmes
     private val adapter by lazy { Adapter(lista, this) }
 
     private var _binding: FragmentCartazBinding? = null
@@ -41,7 +42,9 @@ class CartazFragment : Fragment(), Adapter.OnClickListener {
 
         if (context != null){
             if (!isInternetAvailable(requireContext())){
-                Toast.makeText(context, "No internet connection", Toast.LENGTH_SHORT).show()
+                binding.tvSemConexao.visibility = View.VISIBLE
+            } else {
+                binding.tvSemConexao.visibility = View.GONE
             }
         }
 
@@ -54,7 +57,7 @@ class CartazFragment : Fragment(), Adapter.OnClickListener {
             override fun onResponse(call: Call<Filmes>?, response: Response<Filmes>?) {
                 response?.body()?.let {
                     val result: Filmes = it
-                    lista = result.results.toMutableList()
+                    lista = result
                     setup()
                     adapter.get(lista)
                 }
@@ -86,6 +89,11 @@ class CartazFragment : Fragment(), Adapter.OnClickListener {
             }
         }
         return result
+    }
+
+    override fun onItemClick(item: Filmes, position: Int) {
+        super.onItemClick(item, position)
+        startActivity(Intent(context, DetalheActivity::class.java))
     }
 
     override fun onDestroyView() {

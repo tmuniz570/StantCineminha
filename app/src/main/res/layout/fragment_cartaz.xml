@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.CartazFragment">
 
+    <TextView
+        android:id="@+id/tv_sem_conexao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sem_conexao"
+        android:textSize="24sp"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone"
+        tools:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_nowplaying"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
