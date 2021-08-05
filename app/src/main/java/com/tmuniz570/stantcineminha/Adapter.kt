@@ -15,18 +15,30 @@ class Adapter (
 
     companion object{
         lateinit var selectFilme: Filmes.Results
+        lateinit var allGenres: Map<Int, String>
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderData {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_rv, parent, false)
-        return HolderData(view)
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderData {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_rv, parent, false)
+            return HolderData(view)
     }
 
     override fun onBindViewHolder(holder: HolderData, position: Int) {
         val dados = list.results[position]
 
+        dados.generos = "Gênero: "
+        dados.genre_ids.forEach {
+            dados.generos += allGenres[it]
+            if (it != dados.genre_ids.last()) dados.generos += ", "
+        }
+
+        if (!dados.release_date.isNullOrEmpty() && "-" in dados.release_date){
+            val formatData = dados.release_date.split("-")
+            dados.release_date = "Lanc.: "+formatData[2]+"/"+formatData[1]+"/"+formatData[0]
+        }
+
         holder.nome.text = dados.title
-        holder.genero.text = dados.genre_ids.toString()
+        holder.genero.text = dados.generos
         holder.lancamento.text = dados.release_date
 
         val url = "https://image.tmdb.org/t/p/original${dados.poster_path}"

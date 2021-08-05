@@ -17,7 +17,7 @@
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/tv_overview"
@@ -59,16 +59,43 @@
         app:layout_constraintTop_toBottomOf="@id/tv_genero"/>
 
     <ImageView
+        android:id="@+id/iv_favotito_no"
+        android:src="@drawable/ic_baseline_favorite_border_24"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_lancamento"
+        app:layout_constraintBottom_toTopOf="@id/iv_poster"
+        android:contentDescription="@string/title_favoritos" />
+
+    <ImageView
+        android:id="@+id/iv_favotito_yes"
+        android:src="@drawable/ic_baseline_favorite_24"
+        android:visibility="gone"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_lancamento"
+        app:layout_constraintBottom_toTopOf="@id/iv_poster"
+        android:contentDescription="@string/title_favoritos" />
+
+    <ImageView
         android:id="@+id/iv_poster"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="32dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/ic_baseline_camera_roll_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_lancamento"
-        android:contentDescription="@string/poster_do_filme"
-        app:layout_constraintBottom_toTopOf="@id/btn_voltar"/>
+        app:layout_constraintBottom_toTopOf="@id/btn_voltar"
+        android:contentDescription="@string/poster_do_filme"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_voltar"
@@ -77,7 +104,6 @@
         android:layout_marginHorizontal="32dp"
         android:layout_marginBottom="16dp"
         android:text="@string/voltar"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

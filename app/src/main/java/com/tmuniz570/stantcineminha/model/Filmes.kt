@@ -7,7 +7,9 @@ data class Filmes(var results: List<Results>) {
         val original_language: String,
         val overview:String,
         val poster_path:String,
-        val release_date: String,
-        val title: String
+        var release_date: String,
+        val title: String,
+        var favorito: Boolean,
+        var generos: String
     )
 }

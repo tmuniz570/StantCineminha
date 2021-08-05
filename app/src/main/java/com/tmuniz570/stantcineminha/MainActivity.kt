@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -12,6 +13,11 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tmuniz570.stantcineminha.databinding.ActivityMainBinding
+import com.tmuniz570.stantcineminha.model.Generos
+import com.tmuniz570.stantcineminha.model.RetrofitInitializer
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +25,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Adapter.allGenres = generos()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -41,6 +49,32 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Sem Conexão", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun generos(): Map<Int, String> {
+        val callGenres = RetrofitInitializer().service().listGenres(
+            "pt-BR",
+            "f321a808e68611f41312aa8408531476"
+        )
+
+        val genres = mutableMapOf<Int, String>()
+
+        callGenres.enqueue(object: Callback<Generos> {
+            override fun onResponse(call: Call<Generos>?, response: Response<Generos>?) {
+                response?.body()?.let {
+                    it.genres.forEach {
+                        genres[it.id] = it.name
+                    }
+                }
+            }
+
+
+
+            override fun onFailure(call: Call<Generos>?, t: Throwable?) {
+                Log.d("API Get Now Playing", "FAIL !")
+            }
+        })
+        return genres
     }
 
     private fun isInternetAvailable(context: Context): Boolean {

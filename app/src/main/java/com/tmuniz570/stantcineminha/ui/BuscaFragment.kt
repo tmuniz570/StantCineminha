@@ -1,6 +1,7 @@
 package com.tmuniz570.stantcineminha.ui
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tmuniz570.stantcineminha.Adapter
+import com.tmuniz570.stantcineminha.DetalheActivity
 import com.tmuniz570.stantcineminha.R
 import com.tmuniz570.stantcineminha.databinding.FragmentBuscaBinding
 import com.tmuniz570.stantcineminha.extensions.text
@@ -111,6 +113,11 @@ class BuscaFragment : Fragment(), Adapter.OnClickListener {
             }
         }
         return result
+    }
+
+    override fun onItemClick(item: Filmes, position: Int) {
+        super.onItemClick(item, position)
+        startActivity(Intent(context, DetalheActivity::class.java))
     }
 
     override fun onDestroyView() {
