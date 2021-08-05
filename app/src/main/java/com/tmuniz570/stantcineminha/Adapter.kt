@@ -1,6 +1,5 @@
 package com.tmuniz570.stantcineminha
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,15 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.tmuniz570.stantcineminha.model.Generos
-import com.tmuniz570.stantcineminha.model.NowPlaying
-import com.tmuniz570.stantcineminha.model.RetrofitInitializer
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.tmuniz570.stantcineminha.model.Filmes
 
 class Adapter (
-    private var list : MutableList<NowPlaying.Results> = ArrayList(),
+    private var list : MutableList<Filmes.Results> = ArrayList(),
     private var clickListener: OnClickListener) : RecyclerView.Adapter<Adapter.HolderData>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderData {
@@ -47,7 +41,7 @@ class Adapter (
         var lancamento = v.findViewById<TextView>(R.id.tv_lancamento)
         var poster = v.findViewById<ImageView>(R.id.iv_poster)
 
-        fun initializeClick(item: MutableList<NowPlaying.Results>, action: OnClickListener) {
+        fun initializeClick(item: MutableList<Filmes.Results>, action: OnClickListener) {
 
             itemView.setOnClickListener {
                 action.onItemClick(item[adapterPosition], adapterPosition)
@@ -55,13 +49,13 @@ class Adapter (
         }
     }
 
-    fun get(lista: MutableList<NowPlaying.Results>) {
+    fun get(lista: MutableList<Filmes.Results>) {
         list = lista
         notifyDataSetChanged()
     }
 
     interface OnClickListener {
-        fun onItemClick(item: NowPlaying.Results, position: Int) {
+        fun onItemClick(item: Filmes.Results, position: Int) {
 
         }
     }

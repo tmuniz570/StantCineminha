@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tmuniz570.stantcineminha.Adapter
 import com.tmuniz570.stantcineminha.databinding.FragmentCartazBinding
-import com.tmuniz570.stantcineminha.model.NowPlaying
+import com.tmuniz570.stantcineminha.model.Filmes
 import com.tmuniz570.stantcineminha.model.RetrofitInitializer
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,7 +21,7 @@ import retrofit2.Response
 
 class CartazFragment : Fragment(), Adapter.OnClickListener {
 
-    private var lista : MutableList<NowPlaying.Results> = ArrayList()
+    private var lista : MutableList<Filmes.Results> = ArrayList()
     private val adapter by lazy { Adapter(lista, this) }
 
     private var _binding: FragmentCartazBinding? = null
@@ -47,19 +47,20 @@ class CartazFragment : Fragment(), Adapter.OnClickListener {
 
         val callNowPlaying = RetrofitInitializer().service().listNowPlaying(
             "pt-BR",
-            "f321a808e68611f41312aa8408531476")
+            "f321a808e68611f41312aa8408531476"
+        )
 
-        callNowPlaying.enqueue(object: Callback<NowPlaying> {
-            override fun onResponse(call: Call<NowPlaying>?, response: Response<NowPlaying>?) {
+        callNowPlaying.enqueue(object: Callback<Filmes> {
+            override fun onResponse(call: Call<Filmes>?, response: Response<Filmes>?) {
                 response?.body()?.let {
-                    val result: NowPlaying = it
+                    val result: Filmes = it
                     lista = result.results.toMutableList()
                     setup()
                     adapter.get(lista)
                 }
             }
 
-            override fun onFailure(call: Call<NowPlaying>?, t: Throwable?) {
+            override fun onFailure(call: Call<Filmes>?, t: Throwable?) {
                 Log.d("API Get Now Playing", "FAIL !")
             }
         })
