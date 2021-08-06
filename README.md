@@ -8,7 +8,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 🍉  Projeto
 
-Projeto para criação e listagem de Frutas
+Projeto para criação e listagem de Filmes consumindo API The Movie Database (TMDb).
 
 ## 👨‍💻  Libs utilizadas
 
