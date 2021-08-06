@@ -25,11 +25,13 @@ class DetalheActivity : AppCompatActivity() {
         else binding.ivFavotitoYes.visibility = View.GONE
 
         binding.ivFavotitoNo.setOnClickListener {
+            Adapter.selectFilme.favorito = true
             binding.ivFavotitoYes.visibility = View.VISIBLE
             binding.ivFavotitoNo.visibility = View.GONE
         }
 
         binding.ivFavotitoYes.setOnClickListener {
+            Adapter.selectFilme.favorito = false
             binding.ivFavotitoNo.visibility = View.VISIBLE
             binding.ivFavotitoYes.visibility = View.GONE
         }

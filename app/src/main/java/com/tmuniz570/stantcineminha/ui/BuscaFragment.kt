@@ -42,14 +42,6 @@ class BuscaFragment : Fragment(), Adapter.OnClickListener {
         _binding = FragmentBuscaBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        if (context != null){
-            if (!isInternetAvailable(requireContext())){
-                binding.tvSemConexao.visibility = View.VISIBLE
-            } else {
-                binding.tvSemConexao.visibility = View.GONE
-            }
-        }
-
         val sharedPref = context?.getSharedPreferences(getString(R.string.pref_file), Context.MODE_PRIVATE)
 
         if (sharedPref != null) {
@@ -59,6 +51,15 @@ class BuscaFragment : Fragment(), Adapter.OnClickListener {
         }
 
         binding.btnBuscar.setOnClickListener {
+            if (context != null){
+                if (!isInternetAvailable(requireContext())){
+                    binding.tvSemConexao.visibility = View.VISIBLE
+                    binding.rvBusca.visibility = View.GONE
+                } else {
+                    binding.tvSemConexao.visibility = View.GONE
+                    binding.rvBusca.visibility = View.VISIBLE
+                }
+            }
             apiBuscar(binding.tilBuscarFilme.text)
 
             if (sharedPref != null) {

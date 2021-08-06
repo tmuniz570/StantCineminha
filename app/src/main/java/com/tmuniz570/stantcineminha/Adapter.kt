@@ -58,7 +58,6 @@ class Adapter (
         var poster = v.findViewById<ImageView>(R.id.iv_poster)
 
         fun initializeClick(item: Filmes, action: OnClickListener) {
-
             itemView.setOnClickListener {
                 selectFilme = item.results[adapterPosition]
                 action.onItemClick(item, adapterPosition)

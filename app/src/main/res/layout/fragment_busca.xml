@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:lines="1"
-        android:nestedScrollingEnabled="false"
+        app:startIconDrawable="@drawable/ic_baseline_camera_roll_24"
         android:hint="@string/nome_do_filme"
         android:layout_margin="8dp"
         app:layout_constraintTop_toTopOf="parent"
