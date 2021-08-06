@@ -38,17 +38,22 @@ class FavoritosFragment : Fragment(), Adapter.OnClickListener {
         val root: View = binding.root
 
         dao = FilmesDatabase.getInstance(context).filmesDao()
-        entityToFilmes(dao.getAll())
 
+        return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        entityToFilmes(dao.getAll())
         if (!lista.results.isNullOrEmpty()){
             binding.tvListaVazia.visibility = View.GONE
+            binding.rvFavoritos.visibility = View.VISIBLE
             setup()
             adapter.get(lista)
         }else{
             binding.tvListaVazia.visibility = View.VISIBLE
+            binding.rvFavoritos.visibility = View.GONE
         }
-
-        return root
     }
 
     private fun setup() {
@@ -75,7 +80,6 @@ class FavoritosFragment : Fragment(), Adapter.OnClickListener {
                 lista.results.add(add)
             }
         }
-        Toast.makeText(context, lista.results.size.toString(), Toast.LENGTH_SHORT).show()
     }
 
     override fun onItemClick(item: Filmes, position: Int) {

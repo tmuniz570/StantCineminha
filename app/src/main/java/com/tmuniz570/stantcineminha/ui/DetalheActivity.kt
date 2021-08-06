@@ -23,6 +23,9 @@ class DetalheActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         dao = FilmesDatabase.getInstance(this).filmesDao()
+        dao.getAll().forEach {
+            if (it.id == selectFilme.id) selectFilme.favorito = true
+        }
 
         binding.tvNome.text = selectFilme.title
         binding.tvOverview.text = selectFilme.overview
