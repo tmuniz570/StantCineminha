@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tmuniz570.stantcineminha.Adapter
-import com.tmuniz570.stantcineminha.DetalheActivity
 import com.tmuniz570.stantcineminha.databinding.FragmentFavoritosBinding
+import com.tmuniz570.stantcineminha.favotite.dao.FilmesDao
+import com.tmuniz570.stantcineminha.favotite.database.FilmesDatabase
 import com.tmuniz570.stantcineminha.model.Filmes
 
 class FavoritosFragment : Fragment(), Adapter.OnClickListener {
@@ -32,7 +33,7 @@ class FavoritosFragment : Fragment(), Adapter.OnClickListener {
         _binding = FragmentFavoritosBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        lista = Filmes(emptyList())
+        lista = Filmes(emptyList<Filmes.Results>().toMutableList())
 
         if (!lista.results.isNullOrEmpty()){
             binding.tvListaVazia.visibility = View.GONE

@@ -1,14 +1,14 @@
 package com.tmuniz570.stantcineminha.model
 
-data class Filmes(var results: List<Results>) {
+data class Filmes(var results: MutableList<Results>) {
     inner class Results(
         val genre_ids: List<Int>,
-        val id: Int,
-        val original_language: String,
-        val overview:String,
-        val poster_path:String,
+        var id: Int,
+        var original_language: String,
+        var overview:String,
+        var poster_path:String,
         var release_date: String,
-        val title: String,
+        var title: String,
         var favorito: Boolean,
         var generos: String
     )

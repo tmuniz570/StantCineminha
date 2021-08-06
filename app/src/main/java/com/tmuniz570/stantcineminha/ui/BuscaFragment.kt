@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tmuniz570.stantcineminha.Adapter
-import com.tmuniz570.stantcineminha.DetalheActivity
 import com.tmuniz570.stantcineminha.R
 import com.tmuniz570.stantcineminha.databinding.FragmentBuscaBinding
 import com.tmuniz570.stantcineminha.extensions.text

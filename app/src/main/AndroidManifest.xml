@@ -15,7 +15,7 @@
         android:theme="@style/Theme.StantCineminha"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".DetalheActivity"
+            android:name=".ui.DetalheActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

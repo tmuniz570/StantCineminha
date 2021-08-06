@@ -67,11 +67,8 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-
-
-
             override fun onFailure(call: Call<Generos>?, t: Throwable?) {
-                Log.d("API Get Now Playing", "FAIL !")
+                Log.d("API Get Gêneros", "FAIL !")
             }
         })
         return genres
