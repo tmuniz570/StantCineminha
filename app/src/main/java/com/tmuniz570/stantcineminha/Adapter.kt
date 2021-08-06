@@ -26,11 +26,13 @@ class Adapter (
 
     override fun onBindViewHolder(holder: HolderData, position: Int) {
         val dados = list.results[position]
-
-        dados.generos = "Gênero: "
-        dados.genre_ids.forEach {
-            dados.generos += allGenres[it]
-            if (it != dados.genre_ids.last()) dados.generos += ", "
+        
+        if (!dados.genre_ids.isNullOrEmpty()){
+            dados.generos = "Gênero: "
+            dados.genre_ids.forEach {
+                dados.generos += allGenres[it]
+                if (it != dados.genre_ids.last()) dados.generos += ", "
+            }
         }
 
         if (!dados.release_date.isNullOrEmpty() && "-" in dados.release_date){
