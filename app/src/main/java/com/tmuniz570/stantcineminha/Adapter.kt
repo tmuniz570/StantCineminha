@@ -8,13 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tmuniz570.stantcineminha.model.Filmes
+import com.tmuniz570.stantcineminha.model.Results
 
 class Adapter (
     private var list : Filmes,
     private var clickListener: OnClickListener) : RecyclerView.Adapter<Adapter.HolderData>() {
 
     companion object{
-        lateinit var selectFilme: Filmes.Results
+        lateinit var selectFilme: Results
         lateinit var allGenres: Map<Int, String>
     }
 

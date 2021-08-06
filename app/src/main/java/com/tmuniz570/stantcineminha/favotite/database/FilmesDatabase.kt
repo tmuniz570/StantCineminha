@@ -15,12 +15,12 @@ abstract class FilmesDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: FilmesDatabase? = null
 
-        fun getInstance(context: Context): FilmesDatabase {
+        fun getInstance(context: Context?): FilmesDatabase {
             synchronized(this) {
                 var instance: FilmesDatabase? = INSTANCE
                 if (instance == null) {
                     instance = Room.databaseBuilder(
-                        context,
+                        context!!,
                         FilmesDatabase::class.java,
                         "filmes_database"
                     ).allowMainThreadQueries().build()
